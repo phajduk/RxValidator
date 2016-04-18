@@ -15,7 +15,8 @@ public class RxValidator implements TypeOfChangeBuilder {
   private List<Validator<EditText>> externalValidators = new ArrayList<>();
   private Observable<String> changeEmitter;
   private EditText et;
-  public RxValidator(EditText et) {
+
+  private RxValidator(EditText et) {
     this.et = et;
   }
 

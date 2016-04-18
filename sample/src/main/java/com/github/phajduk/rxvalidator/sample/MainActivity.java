@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     EditText email = (EditText) findViewById(R.id.etEmail);
+    EditText password = (EditText) findViewById(R.id.etPassword);
 
     RxValidator.createFor(email)
         .onValueChanged()
@@ -29,17 +30,32 @@ public class MainActivity extends AppCompatActivity {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Action1<RxValidationResult<EditText>>() {
           @Override public void call(RxValidationResult<EditText> result) {
-            if (result.isProper()) {
-              result.getItem().setError(null);
-              return;
-            }
-            result.getItem().setError(result.getMessage());
-            Log.e(TAG, "Validation result " + result.toString());
+            result.getItem().setError(result.isProper() ? null : result.getMessage());
+            Log.i(TAG, "Validation result " + result.toString());
           }
         }, new Action1<Throwable>() {
           @Override public void call(Throwable throwable) {
             Log.e(TAG, "Validation error", throwable);
           }
         });
+
+    RxValidator.createFor(password)
+        .onFocusChanged()
+        .nonEmpty()
+        .length("Min length is 5", 5)
+        .toObservable()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<RxValidationResult<EditText>>() {
+          @Override public void call(RxValidationResult<EditText> result) {
+            result.getItem().setError(result.isProper() ? null : result.getMessage());
+            Log.i(TAG, "Validation result " + result.toString());
+          }
+        }, new Action1<Throwable>() {
+          @Override public void call(Throwable throwable) {
+            Log.e(TAG, "Validation error", throwable);
+          }
+        });
+
+
   }
 }

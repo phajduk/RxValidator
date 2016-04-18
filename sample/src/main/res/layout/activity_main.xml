@@ -21,20 +21,6 @@
       />
 
   <EditText
-      android:id="@+id/etFirstName"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="first name"
-      />
-
-  <EditText
-      android:id="@+id/etLastName"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:hint="last name"
-      />
-
-  <EditText
       android:id="@+id/etPassword"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -50,10 +36,10 @@
       android:inputType="textPassword"
       />
 
-    <Button
-        android:id="@+id/button"
-        android:text="Validate!"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+  <Button
+      android:id="@+id/button"
+      android:text="Validate!"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
 </LinearLayout>
