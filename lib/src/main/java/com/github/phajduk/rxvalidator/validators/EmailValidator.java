@@ -1,19 +1,21 @@
-package com.github.phajduk.rxvalidator;
+package com.github.phajduk.rxvalidator.validators;
 
 import android.text.TextUtils;
 import android.widget.EditText;
+import com.github.phajduk.rxvalidator.RxValidationResult;
+import com.github.phajduk.rxvalidator.Validator;
 import rx.Observable;
 
-public class RxEmailValidator implements Validator<EditText> {
+public class EmailValidator implements Validator<EditText> {
 
   private static final String DEFAULT_MESSAGE = "Invalid email";
   private String invalidEmailMessage;
 
-  public RxEmailValidator() {
+  public EmailValidator() {
     invalidEmailMessage = DEFAULT_MESSAGE;
   }
 
-  public RxEmailValidator(String invalidEmailMessage) {
+  public EmailValidator(String invalidEmailMessage) {
     this.invalidEmailMessage = invalidEmailMessage;
   }
 

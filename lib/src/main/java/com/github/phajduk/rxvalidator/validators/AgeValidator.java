@@ -1,6 +1,8 @@
-package com.github.phajduk.rxvalidator;
+package com.github.phajduk.rxvalidator.validators;
 
 import android.widget.EditText;
+import com.github.phajduk.rxvalidator.RxValidationResult;
+import com.github.phajduk.rxvalidator.Validator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,21 +13,21 @@ import static java.util.Calendar.DATE;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 
-public class RxAgeValidator implements Validator<EditText> {
+public class AgeValidator implements Validator<EditText> {
 
-  private static final String DEFAULT_MESSAGE = "At least 18y old";
   private static final int DEFAULT_AGE = 18;
+  private static final String DEFAULT_MESSAGE = "At least " + DEFAULT_AGE + "y old";
   private final String message;
   private final SimpleDateFormat sdf;
   private final int age;
 
-  public RxAgeValidator() {
+  public AgeValidator() {
     message = DEFAULT_MESSAGE;
     age = DEFAULT_AGE;
     sdf = new SimpleDateFormat();
   }
 
-  public RxAgeValidator(String message, SimpleDateFormat sdf, int age) {
+  public AgeValidator(String message, SimpleDateFormat sdf, int age) {
     this.message = message;
     this.sdf = sdf;
     this.age = age;

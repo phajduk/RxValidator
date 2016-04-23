@@ -1,8 +1,16 @@
 package com.github.phajduk.rxvalidator;
 
 import android.widget.EditText;
+import android.widget.TextView;
+import com.github.phajduk.rxvalidator.validators.AgeValidator;
+import com.github.phajduk.rxvalidator.validators.DigitValidator;
+import com.github.phajduk.rxvalidator.validators.EmailValidator;
+import com.github.phajduk.rxvalidator.validators.LengthValidator;
+import com.github.phajduk.rxvalidator.validators.NonEmptyValidator;
+import com.github.phajduk.rxvalidator.validators.SameAsValidator;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import rx.Observable;
@@ -74,32 +82,42 @@ public class RxValidator implements TypeOfChangeBuilder {
   }
 
   public RxValidator email() {
-    this.validators.add(new RxEmailValidator());
+    this.validators.add(new EmailValidator());
     return this;
   }
 
   public RxValidator email(String invalidEmailMessage) {
-    this.validators.add(new RxEmailValidator(invalidEmailMessage));
+    this.validators.add(new EmailValidator(invalidEmailMessage));
     return this;
   }
 
   public RxValidator nonEmpty() {
-    this.validators.add(new RxNonEmptyValidator());
+    this.validators.add(new NonEmptyValidator());
     return this;
   }
 
   public RxValidator nonEmpty(String cannotBeEmptyMessage) {
-    this.validators.add(new RxNonEmptyValidator(cannotBeEmptyMessage));
+    this.validators.add(new NonEmptyValidator(cannotBeEmptyMessage));
     return this;
   }
 
   public RxValidator digitOnly(String digitOnlyErrorMessage) {
-    this.validators.add(new RxDigitValidator(digitOnlyErrorMessage));
+    this.validators.add(new DigitValidator(digitOnlyErrorMessage));
     return this;
   }
 
   public RxValidator length(String badLengthMessage, int length) {
-    this.validators.add(new RxLengthValidator(badLengthMessage, length));
+    this.validators.add(new LengthValidator(badLengthMessage, length));
+    return this;
+  }
+
+  public RxValidator age(String badAgeMessage, int age, SimpleDateFormat sdf) {
+    this.validators.add(new AgeValidator(badAgeMessage, sdf, age));
+    return this;
+  }
+
+  public RxValidator sameAs(TextView anotherTextView, String message) {
+    this.validators.add(new SameAsValidator(anotherTextView, message));
     return this;
   }
 

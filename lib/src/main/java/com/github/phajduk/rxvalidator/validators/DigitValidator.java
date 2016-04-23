@@ -1,18 +1,20 @@
-package com.github.phajduk.rxvalidator;
+package com.github.phajduk.rxvalidator.validators;
 
 import android.text.TextUtils;
 import android.widget.EditText;
+import com.github.phajduk.rxvalidator.RxValidationResult;
+import com.github.phajduk.rxvalidator.Validator;
 import rx.Observable;
 
-public class RxDigitValidator implements Validator<EditText> {
+public class DigitValidator implements Validator<EditText> {
   private static final String DEFAULT_MESSAGE = "Digits only";
   private String digitOnlyMessage;
 
-  public RxDigitValidator() {
+  public DigitValidator() {
     digitOnlyMessage = DEFAULT_MESSAGE;
   }
 
-  public RxDigitValidator(String digitOnlyMessage) {
+  public DigitValidator(String digitOnlyMessage) {
     this.digitOnlyMessage = digitOnlyMessage;
   }
 

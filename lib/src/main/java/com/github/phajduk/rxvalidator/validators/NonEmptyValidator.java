@@ -1,18 +1,20 @@
-package com.github.phajduk.rxvalidator;
+package com.github.phajduk.rxvalidator.validators;
 
 import android.text.TextUtils;
 import android.widget.EditText;
+import com.github.phajduk.rxvalidator.RxValidationResult;
+import com.github.phajduk.rxvalidator.Validator;
 import rx.Observable;
 
-public class RxNonEmptyValidator implements Validator<android.widget.EditText> {
+public class NonEmptyValidator implements Validator<EditText> {
   private static final String DEFAULT_MESSAGE = "Cannot be empty";
   private String cannotBeEmptyMessage;
 
-  public RxNonEmptyValidator() {
+  public NonEmptyValidator() {
     cannotBeEmptyMessage = DEFAULT_MESSAGE;
   }
 
-  public RxNonEmptyValidator(String cannotBeEmptyMessage) {
+  public NonEmptyValidator(String cannotBeEmptyMessage) {
     this.cannotBeEmptyMessage = cannotBeEmptyMessage;
   }
 

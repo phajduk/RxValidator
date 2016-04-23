@@ -1,21 +1,23 @@
-package com.github.phajduk.rxvalidator;
+package com.github.phajduk.rxvalidator.validators;
 
 import android.text.TextUtils;
 import android.widget.EditText;
+import com.github.phajduk.rxvalidator.RxValidationResult;
+import com.github.phajduk.rxvalidator.Validator;
 import rx.Observable;
 
-public class RxLengthValidator implements Validator<EditText> {
+public class LengthValidator implements Validator<EditText> {
   private static final String DEFAULT_MESSAGE = "Bad length";
   private static final int DEFAULT_PROPER_LENGTH = 5;
   private String lengthMessage;
   private int properLength;
 
-  public RxLengthValidator() {
+  public LengthValidator() {
     lengthMessage = DEFAULT_MESSAGE;
     properLength = DEFAULT_PROPER_LENGTH;
   }
 
-  public RxLengthValidator(String lengthMessage, int properLength) {
+  public LengthValidator(String lengthMessage, int properLength) {
     this.lengthMessage = lengthMessage;
     this.properLength = properLength;
   }

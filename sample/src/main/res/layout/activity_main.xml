@@ -36,6 +36,15 @@
       android:inputType="textPassword"
       />
 
+  <EditText
+      android:id="@+id/etBirthday"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:focusable="false"
+      android:focusableInTouchMode="false"
+      android:hint="birthday"
+      />
+
   <Button
       android:id="@+id/button"
       android:text="Validate!"
