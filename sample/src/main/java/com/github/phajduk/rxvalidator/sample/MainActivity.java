@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
     setDatePickerListener(birthday);
 
     RxValidator.createFor(email)
-        .onValueChanged()
         .nonEmpty()
         .email()
         .with(new CustomEmailDomainValidator())
         .with(new ExternalApiEmailValidator())
+        .onValueChanged()
         .toObservable()
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Action1<RxValidationResult<EditText>>() {
@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     RxValidator.createFor(password)
-        .onFocusChanged()
         .nonEmpty()
         .length("Min length is 5", 5)
+        .onFocusChanged()
         .toObservable()
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Action1<RxValidationResult<EditText>>() {
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     RxValidator.createFor(confirmPassword)
-        .onFocusChanged()
         .sameAs(password, "Password does not match")
+        .onFocusChanged()
         .toObservable()
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Action1<RxValidationResult<EditText>>() {

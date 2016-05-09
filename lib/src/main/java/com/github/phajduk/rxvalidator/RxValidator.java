@@ -17,7 +17,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
 
-public class RxValidator implements TypeOfChangeBuilder {
+public class RxValidator {
 
   private List<Validator<EditText>> validators = new ArrayList<>();
   private List<Validator<EditText>> externalValidators = new ArrayList<>();
@@ -28,28 +28,11 @@ public class RxValidator implements TypeOfChangeBuilder {
     this.et = et;
   }
 
-  private static RxValidationResult<EditText> getFirstBadResultOrSuccess(
-      List<RxValidationResult<EditText>> results) {
-    RxValidationResult<EditText> firstBadResult = null;
-    for (RxValidationResult<EditText> result : results) {
-      if (!result.isProper()) {
-        firstBadResult = result;
-        break;
-      }
-    }
-    if (firstBadResult == null) {
-      // if there is no bad result, then return first success
-      return results.get(0);
-    } else {
-      return firstBadResult;
-    }
-  }
-
-  public static TypeOfChangeBuilder createFor(EditText et) {
+  public static RxValidator createFor(EditText et) {
     return new RxValidator(et);
   }
 
-  @Override public RxValidator onFocusChanged() {
+  public RxValidator onFocusChanged() {
     this.changeEmitter = RxView.focusChanges(et).skip(1).filter(new Func1<Boolean, Boolean>() {
       @Override public Boolean call(Boolean hasFocus) {
         return !hasFocus;
@@ -62,7 +45,7 @@ public class RxValidator implements TypeOfChangeBuilder {
     return this;
   }
 
-  @Override public RxValidator onValueChanged() {
+  public RxValidator onValueChanged() {
     this.changeEmitter = RxTextView.textChanges(et).skip(1).map(new Func1<CharSequence, String>() {
       @Override public String call(CharSequence charSequence) {
         return charSequence.toString();
@@ -71,7 +54,7 @@ public class RxValidator implements TypeOfChangeBuilder {
     return this;
   }
 
-  @Override public RxValidator onSubscribe() {
+  public RxValidator onSubscribe() {
     this.changeEmitter = Observable.create(new Observable.OnSubscribe<String>() {
       @Override public void call(Subscriber<? super String> subscriber) {
         subscriber.onNext(et.getText().toString());
@@ -178,6 +161,23 @@ public class RxValidator implements TypeOfChangeBuilder {
             }
           }
         });
+  }
+
+  private RxValidationResult<EditText> getFirstBadResultOrSuccess(
+      List<RxValidationResult<EditText>> results) {
+    RxValidationResult<EditText> firstBadResult = null;
+    for (RxValidationResult<EditText> result : results) {
+      if (!result.isProper()) {
+        firstBadResult = result;
+        break;
+      }
+    }
+    if (firstBadResult == null) {
+      // if there is no bad result, then return first success
+      return results.get(0);
+    } else {
+      return firstBadResult;
+    }
   }
 }
 
