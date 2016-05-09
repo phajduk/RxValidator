@@ -8,13 +8,13 @@ import rx.Observable;
 
 public class LengthValidator implements Validator<EditText> {
   private static final String DEFAULT_MESSAGE = "Bad length";
-  private static final int DEFAULT_PROPER_LENGTH = 5;
+
   private String lengthMessage;
   private int properLength;
 
-  public LengthValidator() {
-    lengthMessage = DEFAULT_MESSAGE;
-    properLength = DEFAULT_PROPER_LENGTH;
+  public LengthValidator(int properLength) {
+    this.lengthMessage = DEFAULT_MESSAGE;
+    this.properLength = properLength;
   }
 
   public LengthValidator(String lengthMessage, int properLength) {

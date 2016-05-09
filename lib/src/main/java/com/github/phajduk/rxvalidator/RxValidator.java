@@ -84,8 +84,18 @@ public class RxValidator {
     return this;
   }
 
+  public RxValidator digitOnly() {
+    this.validators.add(new DigitValidator());
+    return this;
+  }
+
   public RxValidator digitOnly(String digitOnlyErrorMessage) {
     this.validators.add(new DigitValidator(digitOnlyErrorMessage));
+    return this;
+  }
+
+  public RxValidator length(int length) {
+    this.validators.add(new LengthValidator(length));
     return this;
   }
 
