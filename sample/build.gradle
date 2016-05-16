@@ -6,10 +6,15 @@ android {
 
   defaultConfig {
     applicationId "com.github.phajduk.rxvalidator.sample"
-    minSdkVersion 16
+    minSdkVersion 15
     targetSdkVersion 23
     versionCode 1
     versionName "1.0"
+  }
+  lintOptions {
+    textReport true
+    textOutput 'stdout'
+    ignore 'HardcodedText'
   }
 }
 
