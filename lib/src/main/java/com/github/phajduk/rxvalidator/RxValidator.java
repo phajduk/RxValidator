@@ -126,6 +126,10 @@ public class RxValidator {
   }
 
   public Observable<RxValidationResult<EditText>> toObservable() {
+    if (changeEmitter == null) {
+      throw new ChangeEmitterNotSetException(
+          "Change emitter have to be set. Did you forget to set onFocusChanged, onValueChanged or onSubscribe?");
+    }
     Observable<RxValidationResult<EditText>> validationResultObservable =
         changeEmitter.concatMap(new Func1<String, Observable<RxValidationResult<EditText>>>() {
           @Override public Observable<RxValidationResult<EditText>> call(final String value) {
