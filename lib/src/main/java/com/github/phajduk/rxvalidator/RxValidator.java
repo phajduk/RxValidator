@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.github.phajduk.rxvalidator.validators.AgeValidator;
 import com.github.phajduk.rxvalidator.validators.DigitValidator;
 import com.github.phajduk.rxvalidator.validators.EmailValidator;
+import com.github.phajduk.rxvalidator.validators.InListValidator;
 import com.github.phajduk.rxvalidator.validators.LengthValidator;
 import com.github.phajduk.rxvalidator.validators.NonEmptyValidator;
 import com.github.phajduk.rxvalidator.validators.SameAsValidator;
@@ -111,6 +112,11 @@ public class RxValidator {
 
   public RxValidator sameAs(TextView anotherTextView, String message) {
     this.validators.add(new SameAsValidator(anotherTextView, message));
+    return this;
+  }
+
+  public RxValidator in(String message, List<String> properValues) {
+    this.validators.add(new InListValidator(message, properValues));
     return this;
   }
 
