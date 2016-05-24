@@ -8,6 +8,7 @@ import com.github.phajduk.rxvalidator.validators.EmailValidator;
 import com.github.phajduk.rxvalidator.validators.InListValidator;
 import com.github.phajduk.rxvalidator.validators.LengthValidator;
 import com.github.phajduk.rxvalidator.validators.NonEmptyValidator;
+import com.github.phajduk.rxvalidator.validators.PatternValidator;
 import com.github.phajduk.rxvalidator.validators.SameAsValidator;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -78,6 +79,16 @@ public class RxValidator {
 
   public RxValidator email(String invalidEmailMessage, Pattern pattern) {
     this.validators.add(new EmailValidator(invalidEmailMessage, pattern));
+    return this;
+  }
+
+  public RxValidator pattern(String invalidValueMessage, Pattern pattern) {
+    this.validators.add(new PatternValidator(invalidValueMessage, pattern));
+    return this;
+  }
+
+  public RxValidator pattern(String invalidValueMessage, String pattern) {
+    this.validators.add(new PatternValidator(invalidValueMessage, pattern));
     return this;
   }
 
