@@ -14,6 +14,7 @@ import com.jakewharton.rxbinding.widget.RxTextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -72,6 +73,11 @@ public class RxValidator {
 
   public RxValidator email(String invalidEmailMessage) {
     this.validators.add(new EmailValidator(invalidEmailMessage));
+    return this;
+  }
+
+  public RxValidator email(String invalidEmailMessage, Pattern pattern) {
+    this.validators.add(new EmailValidator(invalidEmailMessage, pattern));
     return this;
   }
 
