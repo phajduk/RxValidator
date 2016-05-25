@@ -6,6 +6,7 @@ import com.github.phajduk.rxvalidator.validators.AgeValidator;
 import com.github.phajduk.rxvalidator.validators.DigitValidator;
 import com.github.phajduk.rxvalidator.validators.EmailValidator;
 import com.github.phajduk.rxvalidator.validators.InListValidator;
+import com.github.phajduk.rxvalidator.validators.LengthValidator;
 import com.github.phajduk.rxvalidator.validators.MinLengthValidator;
 import com.github.phajduk.rxvalidator.validators.NonEmptyValidator;
 import com.github.phajduk.rxvalidator.validators.PatternValidator;
@@ -119,6 +120,16 @@ public class RxValidator {
 
   public RxValidator minLength(int length, String badLengthMessage) {
     this.validators.add(new MinLengthValidator(badLengthMessage, length));
+    return this;
+  }
+
+  public RxValidator length(int length) {
+    this.validators.add(new LengthValidator(length));
+    return this;
+  }
+
+  public RxValidator length(int length, String badLengthMessage) {
+    this.validators.add(new LengthValidator(badLengthMessage, length));
     return this;
   }
 

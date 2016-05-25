@@ -20,7 +20,7 @@ Observable<RxValidationResult> observable =
 In above example `nonEmpty` and `length` are validators, `.onFocusChanged()` decides about validation trigger. 
 
 ### Validators
-At the moment we have following pre-defined validation rules: `email`, `nonEmpty`, `digitOnly`, `length`, `age`, `sameAs`.
+At the moment we have following pre-defined validation rules: `email`, `nonEmpty`, `digitOnly`, `length`, `minLength`, `age`, `sameAs`.
 You can also provide custom validation rule using `with(Validator<EditText> externalValidator)` operator. **It gives you possibility to define your own rules e.g. validate e-mail via HTTP call.**
 
 ### Validation trigger
