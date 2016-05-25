@@ -6,18 +6,18 @@ import com.github.phajduk.rxvalidator.RxValidationResult;
 import com.github.phajduk.rxvalidator.Validator;
 import rx.Observable;
 
-public class LengthValidator implements Validator<EditText> {
+public class MinLengthValidator implements Validator<EditText> {
   private static final String DEFAULT_MESSAGE = "Bad length";
 
   private String lengthMessage;
   private int properLength;
 
-  public LengthValidator(int properLength) {
+  public MinLengthValidator(int properLength) {
     this.lengthMessage = DEFAULT_MESSAGE;
     this.properLength = properLength;
   }
 
-  public LengthValidator(String lengthMessage, int properLength) {
+  public MinLengthValidator(String lengthMessage, int properLength) {
     this.lengthMessage = lengthMessage;
     this.properLength = properLength;
   }
@@ -27,7 +27,7 @@ public class LengthValidator implements Validator<EditText> {
       return Observable.just(RxValidationResult.createImproper(item, lengthMessage));
     }
 
-    if (text.trim().length() == properLength) {
+    if (text.trim().length() >= properLength) {
       return Observable.just(RxValidationResult.createSuccess(item));
     }
 

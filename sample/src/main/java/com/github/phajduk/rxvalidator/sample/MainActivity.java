@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     RxValidator.createFor(password)
         .nonEmpty()
-        .length("Min length is 5", 5)
+        .minLength(5, "Min length is 5")
         .onFocusChanged()
         .toObservable()
         .observeOn(AndroidSchedulers.mainThread())
