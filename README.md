@@ -32,7 +32,15 @@ In order to decide, when validation should be launched you can choose one from t
 ## Download
 Gradle:
 ```groovy
-tbd
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile 'com.github.phajduk:RxValidator:master-SNAPSHOT'
+}
+
 ```
 
 # License
