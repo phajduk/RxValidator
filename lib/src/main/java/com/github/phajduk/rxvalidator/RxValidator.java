@@ -7,6 +7,7 @@ import com.github.phajduk.rxvalidator.validators.DigitValidator;
 import com.github.phajduk.rxvalidator.validators.EmailValidator;
 import com.github.phajduk.rxvalidator.validators.InListValidator;
 import com.github.phajduk.rxvalidator.validators.LengthValidator;
+import com.github.phajduk.rxvalidator.validators.MaxLengthValidator;
 import com.github.phajduk.rxvalidator.validators.MinLengthValidator;
 import com.github.phajduk.rxvalidator.validators.NonEmptyValidator;
 import com.github.phajduk.rxvalidator.validators.PatternValidator;
@@ -123,6 +124,16 @@ public class RxValidator {
     return this;
   }
 
+  public RxValidator maxLength(int length) {
+    this.validators.add(new MaxLengthValidator(length));
+    return this;
+  }
+
+  public RxValidator maxLength(int length, String badLengthMessage) {
+    this.validators.add(new MaxLengthValidator(badLengthMessage, length));
+    return this;
+  }
+
   public RxValidator length(int length) {
     this.validators.add(new LengthValidator(length));
     return this;
@@ -175,7 +186,7 @@ public class RxValidator {
             .map(new Func1<List<RxValidationResult<EditText>>, RxValidationResult<EditText>>() {
               @Override
               public RxValidationResult<EditText> call(List<RxValidationResult<EditText>> objects) {
-                return getFirstBadResultOrSuccess(objects);
+                return ValidationResultHelper.getFirstBadResultOrSuccess(objects);
               }
             });
 
@@ -201,7 +212,7 @@ public class RxValidator {
                       new Func1<List<RxValidationResult<EditText>>, RxValidationResult<EditText>>() {
                         @Override public RxValidationResult<EditText> call(
                             List<RxValidationResult<EditText>> objects) {
-                          return getFirstBadResultOrSuccess(objects);
+                          return ValidationResultHelper.getFirstBadResultOrSuccess(objects);
                         }
                       });
             } else {
@@ -209,23 +220,6 @@ public class RxValidator {
             }
           }
         });
-  }
-
-  private RxValidationResult<EditText> getFirstBadResultOrSuccess(
-      List<RxValidationResult<EditText>> results) {
-    RxValidationResult<EditText> firstBadResult = null;
-    for (RxValidationResult<EditText> result : results) {
-      if (!result.isProper()) {
-        firstBadResult = result;
-        break;
-      }
-    }
-    if (firstBadResult == null) {
-      // if there is no bad result, then return first success
-      return results.get(0);
-    } else {
-      return firstBadResult;
-    }
   }
 }
 
