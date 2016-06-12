@@ -48,7 +48,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.phajduk:RxValidator:master-SNAPSHOT'
+    compile 'com.github.phajduk:RxValidator:94fdca4ec6504985d6187080f1d9e9580703c082' //commit hash
 }
 
 ```
