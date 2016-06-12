@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText password = (EditText) findViewById(R.id.etPassword);
     EditText confirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
     EditText birthday = (EditText) findViewById(R.id.etBirthday);
+    EditText ip4Address = (EditText) findViewById(R.id.etIp4);
     setDatePickerListener(birthday);
 
     RxValidator.createFor(email)
@@ -87,6 +88,22 @@ public class MainActivity extends AppCompatActivity {
 
     RxValidator.createFor(birthday)
         .age("You have to be 18y old", 18, sdf)
+        .onValueChanged()
+        .toObservable()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<RxValidationResult<EditText>>() {
+          @Override public void call(RxValidationResult<EditText> result) {
+            result.getItem().setError(result.isProper() ? null : result.getMessage());
+            Log.i(TAG, "Validation result " + result.toString());
+          }
+        }, new Action1<Throwable>() {
+          @Override public void call(Throwable throwable) {
+            Log.e(TAG, "Validation error", throwable);
+          }
+        });
+
+    RxValidator.createFor(ip4Address)
+        .ip4("Invalid IP4 format")
         .onValueChanged()
         .toObservable()
         .observeOn(AndroidSchedulers.mainThread())

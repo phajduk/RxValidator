@@ -6,6 +6,7 @@ import com.github.phajduk.rxvalidator.validators.AgeValidator;
 import com.github.phajduk.rxvalidator.validators.DigitValidator;
 import com.github.phajduk.rxvalidator.validators.EmailValidator;
 import com.github.phajduk.rxvalidator.validators.InListValidator;
+import com.github.phajduk.rxvalidator.validators.Ip4Validator;
 import com.github.phajduk.rxvalidator.validators.LengthValidator;
 import com.github.phajduk.rxvalidator.validators.MaxLengthValidator;
 import com.github.phajduk.rxvalidator.validators.MinLengthValidator;
@@ -81,6 +82,16 @@ public class RxValidator {
 
   public RxValidator email(String invalidEmailMessage, Pattern pattern) {
     this.validators.add(new EmailValidator(invalidEmailMessage, pattern));
+    return this;
+  }
+
+  public RxValidator ip4() {
+    this.validators.add(new Ip4Validator());
+    return this;
+  }
+
+  public RxValidator ip4(String invalidIp4Message) {
+    this.validators.add(new Ip4Validator(invalidIp4Message));
     return this;
   }
 

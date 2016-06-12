@@ -29,6 +29,7 @@ At the moment we have following pre-defined validation rules:
 - `maxLength`
 - `age`
 - `sameAs`
+- `ip4`
 
 You can also provide custom validation rule using `with(Validator<EditText> externalValidator)` operator. **It gives you possibility to define your own rules e.g. validate e-mail via HTTP call.**
 
