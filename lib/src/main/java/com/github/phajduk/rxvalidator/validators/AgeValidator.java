@@ -1,5 +1,6 @@
 package com.github.phajduk.rxvalidator.validators;
 
+import android.text.TextUtils;
 import android.widget.EditText;
 import com.github.phajduk.rxvalidator.RxValidationResult;
 import com.github.phajduk.rxvalidator.Validator;
@@ -35,6 +36,9 @@ public class AgeValidator implements Validator<EditText> {
   }
 
   @Override public Observable<RxValidationResult<EditText>> validate(String text, EditText item) {
+    if(TextUtils.isEmpty(text)){
+      return Observable.just(RxValidationResult.createImproper(item, message));
+    }
     try {
       Date date = sdf.parse(text);
       if (ageIsValid(date)) {
