@@ -2,7 +2,7 @@ package com.github.phajduk.rxvalidator.validators;
 
 import java.util.regex.Pattern;
 
-public class Ip4Validator extends PatternValidator {
+public class Ip4Validator extends PatternMatchesValidator{
 
   private static final String DEFAULT_MESSAGE = "Invalid IP";
 

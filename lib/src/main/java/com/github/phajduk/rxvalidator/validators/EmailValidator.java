@@ -2,7 +2,7 @@ package com.github.phajduk.rxvalidator.validators;
 
 import java.util.regex.Pattern;
 
-public class EmailValidator extends PatternValidator {
+public class EmailValidator extends PatternMatchesValidator {
 
   private static final String DEFAULT_MESSAGE = "Invalid email";
 

@@ -11,7 +11,8 @@ import com.github.phajduk.rxvalidator.validators.LengthValidator;
 import com.github.phajduk.rxvalidator.validators.MaxLengthValidator;
 import com.github.phajduk.rxvalidator.validators.MinLengthValidator;
 import com.github.phajduk.rxvalidator.validators.NonEmptyValidator;
-import com.github.phajduk.rxvalidator.validators.PatternValidator;
+import com.github.phajduk.rxvalidator.validators.PatternFindValidator;
+import com.github.phajduk.rxvalidator.validators.PatternMatchesValidator;
 import com.github.phajduk.rxvalidator.validators.SameAsValidator;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxTextView;
@@ -95,13 +96,23 @@ public class RxValidator {
     return this;
   }
 
-  public RxValidator pattern(String invalidValueMessage, Pattern pattern) {
-    this.validators.add(new PatternValidator(invalidValueMessage, pattern));
+  public RxValidator patternMatches(String invalidValueMessage, Pattern pattern) {
+    this.validators.add(new PatternMatchesValidator(invalidValueMessage, pattern));
     return this;
   }
 
-  public RxValidator pattern(String invalidValueMessage, String pattern) {
-    this.validators.add(new PatternValidator(invalidValueMessage, pattern));
+  public RxValidator patternMatches(String invalidValueMessage, String pattern) {
+    this.validators.add(new PatternMatchesValidator(invalidValueMessage, pattern));
+    return this;
+  }
+
+  public RxValidator patternFind(String invalidValueMessage, Pattern pattern) {
+    this.validators.add(new PatternFindValidator(invalidValueMessage, pattern));
+    return this;
+  }
+
+  public RxValidator patternFind(String invalidValueMessage, String pattern) {
+    this.validators.add(new PatternFindValidator(invalidValueMessage, pattern));
     return this;
   }
 
