@@ -13,11 +13,10 @@ public class MinLengthValidator implements Validator<EditText> {
   private int properLength;
 
   public MinLengthValidator(int properLength) {
-    this.lengthMessage = DEFAULT_MESSAGE;
-    this.properLength = properLength;
+    this(properLength, DEFAULT_MESSAGE);
   }
 
-  public MinLengthValidator(String lengthMessage, int properLength) {
+  public MinLengthValidator(int properLength, String lengthMessage) {
     this.lengthMessage = lengthMessage;
     this.properLength = properLength;
   }

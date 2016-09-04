@@ -142,7 +142,7 @@ public class RxValidator {
   }
 
   public RxValidator minLength(int length, String badLengthMessage) {
-    this.validators.add(new MinLengthValidator(badLengthMessage, length));
+    this.validators.add(new MinLengthValidator(length, badLengthMessage));
     return this;
   }
 
@@ -152,7 +152,7 @@ public class RxValidator {
   }
 
   public RxValidator maxLength(int length, String badLengthMessage) {
-    this.validators.add(new MaxLengthValidator(badLengthMessage, length));
+    this.validators.add(new MaxLengthValidator(length, badLengthMessage));
     return this;
   }
 
@@ -162,7 +162,7 @@ public class RxValidator {
   }
 
   public RxValidator length(int length, String badLengthMessage) {
-    this.validators.add(new LengthValidator(badLengthMessage, length));
+    this.validators.add(new LengthValidator(length, badLengthMessage));
     return this;
   }
 
