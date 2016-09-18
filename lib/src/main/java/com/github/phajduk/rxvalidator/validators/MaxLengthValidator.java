@@ -13,11 +13,10 @@ public class MaxLengthValidator implements Validator<EditText> {
   private int properLength;
 
   public MaxLengthValidator(int properLength) {
-    this.lengthMessage = DEFAULT_MESSAGE;
-    this.properLength = properLength;
+    this(properLength, DEFAULT_MESSAGE);
   }
 
-  public MaxLengthValidator(String lengthMessage, int properLength) {
+  public MaxLengthValidator(int properLength, String lengthMessage) {
     this.lengthMessage = lengthMessage;
     this.properLength = properLength;
   }
